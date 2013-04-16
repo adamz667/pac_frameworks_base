@@ -1149,12 +1149,13 @@ public final class Settings {
          * or not a valid integer.
          */
         public static boolean getBoolean(ContentResolver cr, String name, boolean def) {
-            String v = getString(cr, name);
+            String resolved = getString(cr, name);
             try {
-                if(v != null)
-                    return "1".equals(v);
-                else
+                if(resolved != null) {
+                    return "1".equals(resolved);
+               } else {
                     return def;
+               }
             } catch (NumberFormatException e) {
                 return def;
             }
@@ -2554,6 +2555,13 @@ public final class Settings {
         public static final String POINTER_SPEED = "pointer_speed";
 
         /**
+         * text color on qs tiles
+         *
+         * @hide
+         */
+        public static final String QUICK_TILES_TEXT_COLOR = "quick_tiles_text_color";
+
+        /**
          * Quick Settings Panel Tiles to Use
          *
          * @hide
@@ -3256,6 +3264,32 @@ public final class Settings {
          * @hide
          */
         public static final String STATUSBAR_CLOCK_WEEKDAY = "statusbar_clock_weekday";
+        
+        /**
+        * Shows date before clock time
+        * 0 - No Date
+        * 1 - Normal Date
+        * @hide
+        */
+        public static final String STATUSBAR_CLOCK_DATE_DISPLAY = "statusbar_clock_date_display";
+        
+        /**
+        * Shows month before clock time
+        * 0 - No Month
+        * 1 - Small Month 
+        * 2 - Normal/Long Month 
+        * @hide
+        */
+        public static final String STATUSBAR_CLOCK_MONTH_DISPLAY = "statusbar_clock_month";
+        
+        /**
+        * Sets the date string style
+        * 0 - Regular style
+        * 1 - Lowercase
+        * 2 - Uppercase
+        * @hide
+        */
+        public static final String STATUSBAR_CLOCK_MONTH_STYLE = "statusbar_clock_month_style";
 
         /**
          * Show the pending notification counts as overlays on the statusbar
@@ -3509,6 +3543,12 @@ public final class Settings {
          * @hide
          */
         public static final String POWER_DIALOG_SHOW_NAVBAR_HIDE = "power_dialog_show_navbar_hide";
+        
+        /**
+         * Show the Reboot on lockscreen dialog in Power menu
+         * @hide
+         */
+        public static final String POWER_DIALOG_SHOW_REBOOT_KEYGUARD = "power_dialog_show_reboot_keyguard";
 
         /**
          * @hide
